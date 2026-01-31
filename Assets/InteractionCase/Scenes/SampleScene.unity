@@ -747,13 +747,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a69d129c2b81d2418dd971fe89a1deb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 330585545}
-  interactionRayPoint: {x: 0, y: 0, z: 0}
-  interactableLayer:
+  m_PlayerCamera: {fileID: 330585545}
+  m_InteractionRayPoint: {x: 0, y: 0, z: 0}
+  m_InteractableLayer:
     serializedVersion: 2
     m_Bits: 64
-  interactionRange: 3
-  holdDuration: 2
+  m_InteractionRange: 3
+  m_HoldDuration: 2
 --- !u!1 &1734764619
 GameObject:
   m_ObjectHideFlags: 0
