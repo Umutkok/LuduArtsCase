@@ -12,7 +12,13 @@ namespace InteractionSystem.UI
         [SerializeField] private TMP_Text m_PromptText;
         [SerializeField] private TMP_Text m_FeedbackText;
         [SerializeField] private Image m_HoldProgressBar;
+        [SerializeField] private Image m_RedKeyImage;
+        [SerializeField] private Image m_BlueKeyImage;
 
+        #endregion
+
+        #region Private Fields
+        private PlayerInventory m_Inventory;
         #endregion
 
         #region Unity Methods
@@ -20,6 +26,13 @@ namespace InteractionSystem.UI
         private void Awake()
         {
             ClearUI();
+            
+            m_Inventory = FindAnyObjectByType<PlayerInventory>();
+
+            if (m_Inventory != null)
+            {
+                m_Inventory.KeyAdded += ShowKeyIcon;
+            }
         }
 
         #endregion
@@ -63,6 +76,25 @@ namespace InteractionSystem.UI
 
             if (m_HoldProgressBar != null)
                 m_HoldProgressBar.gameObject.SetActive(false);
+        }
+
+        /// <summary>
+        /// Shows key icon based on collected key id.
+        /// </summary>
+        public void ShowKeyIcon(ItemData key)
+        {
+            if (key == null) return;
+
+            switch (key.ItemId)
+            {
+                case "Key_Red":
+                    m_RedKeyImage.gameObject.SetActive(true);
+                    break;
+
+                case "Key_Blue":
+                    m_BlueKeyImage.gameObject.SetActive(true);
+                    break;
+            }
         }
 
         #endregion
