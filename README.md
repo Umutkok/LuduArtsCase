@@ -113,14 +113,14 @@ Key alındığında UI ikonlarını otomatik güncellemek
 
 | Kural | Uygulandı | Notlar |
 |-------|-----------|--------|
-| m_ prefix (private fields) | [x] / [] | |
-| s_ prefix (private static) | [x] / [] | |
-| k_ prefix (private const) | [x] / [] | |
-| Region kullanımı | [x] / [ ] | |
-| Region sırası doğru | [x] / [ ] | |
-| XML documentation | [x] / [ ] | |
-| Silent bypass yok | [x] / [ ] | |
-| Explicit interface impl. | [x] / [ ] | |
+| m_ prefix (private fields) | [x] / [x] | |
+| s_ prefix (private static) | [x] / [x] | |
+| k_ prefix (private const) | [x] / [x] | |
+| Region kullanımı | [x] / [x] | |
+| Region sırası doğru | [x] / [x] | |
+| XML documentation | [x] / [x] | |
+| Silent bypass yok | [x] / [x] | |
+| Explicit interface impl. | [x] / [x] | |
 
 ### Naming Convention
 
@@ -189,7 +189,7 @@ Key alındığında UI ikonlarını otomatik güncellemek
 ## Bilinen Limitasyonlar
 
 ### Tamamlanamayan Özellikler
-Chest açılması için rotate kısmı yetişmedi o yüzden biraz bozuk kaldı
+Chest açılması için rotate kısmı yetişmedi o yüzden rastgele dönüyor, açıldığı anlaşılsın diye
 
 ### Bilinen Bug'lar
 
@@ -204,12 +204,12 @@ Chest açılması için rotate kısmı yetişmedi o yüzden biraz bozuk kaldı
 
 Zorunlu gereksinimlerin dışında eklediklerim:
 
-1. **[Özellik Adı]**
-   - Açıklama: [Ne yapıyor]
-   - Neden ekledim: [Motivasyon]
+1. **Chest den Key düşüyor**
+Chest belirlediğiniz key i eğer açılırsa player a verir
 
-2. **[Özellik Adı]**
-   - ...
+2. **Switch, key kontrolü**
+  Eğer kapı kilitliyse önce anahtar ile açılmalı yoksa switch bir işe yaramaz
+  oyuncu üzerinde key i taşısa bile switch i kullanmadan önce mutlaka anahtar ile kapıyı açmalı
 
 ---
 
