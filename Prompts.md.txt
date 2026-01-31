@@ -1,0 +1,247 @@
+# LLM Kullanım Dokümantasyonu
+
+> Bu dosyayı case boyunca kullandığınız LLM (ChatGPT, Claude, Copilot vb.) etkileşimlerini belgelemek için kullanın.
+> Dürüst ve detaylı dokümantasyon beklenmektedir.
+
+## Özet
+
+| Bilgi | Değer |
+|-------|-------|
+| Toplam prompt sayısı | 6 |
+| Kullanılan araçlar | ChatGPT |
+| En çok yardım alınan konular | Raycast, UI |
+| Tahmini LLM ile kazanılan süre | 5-10 saat |
+
+---
+
+## Prompt 1: [Interactable]
+
+**Araç:** [ChatGPT-4]
+**Tarih/Saat:** Saat 15.30 civarı
+
+**Prompt:**
+```
+senden Interactable adında bir interface yazmanı
+| **Instant** | Tek tuş basımı ile anında | Pickup item, button press | 
+| **Hold** | Basılı tutma gerektiren | Chest açma, kapı kilidi kırma | 
+| **Toggle** | Açık/kapalı durumlar | Light switch, door | 
+şeklinde 3 tane fonksiyon açmanı istiyorum.
+```
+
+**Alınan Cevap (Özet):**
+```
+İstenilen kodları yazdı 
+```
+
+**Nasıl Kullandım:**
+- [x] Direkt kullandım (değişiklik yapmadan)
+- [ ] Adapte ettim (değişiklikler yaparak)
+- [ ] Reddettim (kullanmadım)
+
+**Açıklama:**
+Temel oluşturmak ve hızlıca projeye başlamak için yazdım
+
+
+---
+
+## Prompt 2: [raycast + input logic]
+
+**Araç:** [ChatGPT-4 / Claude / GitHub Copilot]
+**Tarih/Saat:** 17 civarı
+
+**Prompt:**
+```
+using UnityEngine; 
+using InteractionSystem.Core; 
+public class Door : MonoBehaviour, IInteractable 
+{ 
+ public void InteractInstant() 
+ { 
+ } 
+ public void InteractHold(float holdProgress) 
+ { 
+ } 
+ public void InteractToggle() 
+ {
+ } 
+} 
+
+ile door switch chest ve key i script lerini yaptım ve IInteraction ile bağladım 
+
+[Header("Interaction")] 
+[SerializeField] private Vector3 interactionRayPoint = default; 
+[SerializeField] private LayerMask interactableLayer = default; 
+[SerializeField] private float interactionRange = default; 
+private IInteractable currentInteractable; 
+bu değişkenleri  kullanarak  yeni bir InteractionDetector.cs oluştur. 
+
+
+public enum InteractionType { Instant, Hold, Toggle } 
+ile enum oluşturdum bunu da Interactable objenin hangi tür etkileşim kullandığını belirtmek için kullan 
+
+raycast + input logic i yaz.
+```
+
+**Alınan Cevap (Özet):**
+```
+İstenilen kodu yazdı ancak bazı düzenlemeler ve yapmam gerekti
+```
+
+**Nasıl Kullandım:**
+- [ ] Direkt kullandım
+- [x] Adapte ettim
+- [ ] Reddettim
+
+**Açıklama:**
+InteractionDetector için gereken kodda bazı kısımları düzenledim
+
+---
+
+## Prompt 3: [Items]
+
+**Araç:** [ChatGPT-4]
+**Tarih/Saat:** Saat 18 civarı
+
+**Prompt:**
+```
+sadece door için örnekleyip çalıştıralım hadi senden bir pivot noktası istemeni door u buna göre 90 derece y aksında çevirmeni istiyorum 
+şimdilik update kullanma bunun için instant geçse olur ben sonradan animasyon ekliyeceğim
+```
+
+**Alınan Cevap (Özet):**
+```
+Door için güzel bir sistem kurdu benzerini diğerlerine ben implemente ettim
+```
+
+**Nasıl Kullandım:**
+- [] Direkt kullandım (değişiklik yapmadan)
+- [x] Adapte ettim (değişiklikler yaparak)
+- [ ] Reddettim (kullanmadım)
+
+**Açıklama:**
+Belli bir sistemin küçük kısmını AI a yaptırdım kalanları kendim devam ettirdim
+
+## Prompt 4: [Interactable]
+
+**Araç:** [ChatGPT-4]
+**Tarih/Saat:** Saat 18 civarı
+
+**Prompt:**
+```
+IInteractable’a bool CanInteract ve string CannotInteractReason ekleyip Detector’da bunu kullan, kilitli kapı vs. durumunda UI feedback versin.
+```
+
+**Alınan Cevap (Özet):**
+```
+İstenileni tam yapamadı ama fikir verdi onun desteği ile ben tamamladım
+```
+
+**Nasıl Kullandım:**
+- [] Direkt kullandım (değişiklik yapmadan)
+- [x] Adapte ettim (değişiklikler yaparak)
+- [ ] Reddettim (kullanmadım)
+
+**Açıklama:**
+
+**Açıklama:**
+Belli bir sistemin küçük kısmını AI a yaptırdım kalanları kendim devam ettirdim
+
+## Prompt 4: [Feedback]
+
+**Araç:** [ChatGPT-4]
+**Tarih/Saat:** Saat 20 civarı
+
+**Prompt:**
+```
+IInteractable’a bool CanInteract ve string CannotInteractReason ekleyip Detector’da bunu kullan, kilitli kapı vs. durumunda UI feedback versin.
+```
+
+**Alınan Cevap (Özet):**
+```
+İstenileni tam yapamadı ama fikir verdi onun desteği ile ben tamamladım
+```
+
+**Nasıl Kullandım:**
+- [] Direkt kullandım (değişiklik yapmadan)
+- [x] Adapte ettim (değişiklikler yaparak)
+- [ ] Reddettim (kullanmadım)
+
+**Açıklama:**
+
+## Prompt 5: [XML]
+
+**Araç:** [ChatGPT-4]
+**Tarih/Saat:** Saat 22 civarı
+
+**Prompt:**
+```
+Kodlara XML documentation eklemeni istedim, her interface ve önemli method açıklamalı olsun.
+```
+
+**Alınan Cevap (Özet):**
+```
+İstenileni tam olarak yaptı ben türkçeye çevirdim
+```
+
+**Nasıl Kullandım:**
+- [] Direkt kullandım (değişiklik yapmadan)
+- [x] Adapte ettim (değişiklikler yaparak)
+- [ ] Reddettim (kullanmadım)
+
+**Açıklama:**
+
+
+## Prompt 6: [UI]
+
+**Araç:** [ChatGPT-4]
+**Tarih/Saat:** Saat 24 civarı
+
+**Prompt:**
+```
+“PlayerInventory ve InteractionUIController’u birbirine bağla. Key toplandığında UI’da kırmızı veya mavi key icon’ları aktif olsun. Hangi key hangi icon’u aktif eder bunu da belirt. Event tabanlı çözüm istiyorum.”
+```
+
+**Alınan Cevap (Özet):**
+```
+Sorunsuz bağladı ben sadece Unity de entegre ettim
+```
+
+**Nasıl Kullandım:**
+- [] Direkt kullandım (değişiklik yapmadan)
+- [x] Adapte ettim (değişiklikler yaparak)
+- [ ] Reddettim (kullanmadım)
+
+**Açıklama:**
+UI da çoğu kısımı ortaklaşa yaptık ama destek oldu baya
+
+
+
+
+
+## Genel Değerlendirme
+
+### LLM'in En Çok Yardımcı Olduğu Alanlar
+1. [Raycast]
+2. [UI]
+3. [Inventory]
+
+### LLM'in Yetersiz Kaldığı Alanlar
+çok hatırlamıyorum genelde bir den çok şey istediğimde yetersiz kaldı
+
+### LLM Kullanımı Hakkında Düşüncelerim
+> [Bu case boyunca LLM kullanarak neler öğrendiniz?
+> LLM'siz ne kadar sürede bitirebilirdiniz?
+> Gelecekte LLM'i nasıl daha etkili kullanabilirsiniz?]
+
+---
+
+## Notlar
+
+- Her önemli LLM etkileşimini kaydedin
+- Copy-paste değil, anlayarak kullandığınızı gösterin
+- LLM'in hatalı cevap verdiği durumları da belirtin
+- Dürüst olun - LLM kullanımı teşvik edilmektedir
+
+---
+
+*Bu şablon Ludu Arts Unity Intern Case için hazırlanmıştır.*
