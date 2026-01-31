@@ -52,6 +52,10 @@ public class Chest : MonoBehaviour, IInteractable
     #endregion
 
     #region IInteractable Implementation
+
+    public bool CanInteract => !m_IsOpened;
+
+    public string CannotInteractReason => m_IsOpened ? "Already opened" : "";
     InteractionType IInteractable.InteractionType => m_InteractionType;
     float IInteractable.HoldDuration => m_HoldDuration;
 
@@ -76,5 +80,5 @@ public class Chest : MonoBehaviour, IInteractable
         // Şimdilik kullanılmıyor
     }
     #endregion
-    
+
 } 

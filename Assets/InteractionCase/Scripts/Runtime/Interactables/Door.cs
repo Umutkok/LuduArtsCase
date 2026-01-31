@@ -17,7 +17,7 @@ public class Door : MonoBehaviour, IInteractable
 
     #endregion
 
-    #region Private Methods
+    #region Methods
     private void TryUnlock()
     {
         PlayerInventory inventory = FindAnyObjectByType<PlayerInventory>();
@@ -35,8 +35,14 @@ public class Door : MonoBehaviour, IInteractable
             Debug.Log("Anahtar gerekli.");
         }
     }
-    private void ToggleDoor()
+    public void ToggleDoor()
     {
+        if (m_IsLocked)
+        {
+            Debug.Log("Door is locked");
+            return;
+        }
+
         if (m_PivotPoint == null)
         {
             Debug.LogWarning($"{name} Door has no pivot point assigned.");
@@ -53,6 +59,36 @@ public class Door : MonoBehaviour, IInteractable
     #endregion
 
     #region IInteractable Implementation
+    // Interface'te tanımlıysa explicit implementasyon
+    bool IInteractable.CanInteract
+    {
+        get
+        {
+            // Eğer kilitli değilse etkileşime açık
+            if (!m_IsLocked) return true;
+
+            // Kilitliyse oyuncunun anahtarı var mı kontrol et
+            var inventory = FindAnyObjectByType<PlayerInventory>();
+            if (inventory == null) return false;
+
+            return inventory.HasKey(m_RequiredKey);
+        }
+    }
+
+    string IInteractable.CannotInteractReason
+    {
+        get
+        {
+            // Etkileşime izin veriliyorsa boş string döndür
+            if (((IInteractable)this).CanInteract) return string.Empty;
+
+            // Kilitli ve anahtar yoksa spesifik mesaj
+            if (m_IsLocked) return "Door is locked";
+
+            // Genel fallback mesajı (gerektiğinde özelleştir)
+            return "Cannot interact";
+        }
+    }
     InteractionType IInteractable.InteractionType => m_InteractionType;
     float IInteractable.HoldDuration => 0f;
 

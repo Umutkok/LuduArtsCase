@@ -1,5 +1,6 @@
 using UnityEngine;
 using InteractionSystem.Core;
+using InteractionSystem.UI;
 
 namespace InteractionSystem.Player
 {
@@ -14,6 +15,7 @@ namespace InteractionSystem.Player
 
         [Header("References")]
         [SerializeField] private Camera m_PlayerCamera;
+        [SerializeField] private InteractionUIController m_InteractionUI;
 
         [Header("Raycast")]
         [SerializeField] private Vector3 m_InteractionRayPoint = Vector3.zero;
@@ -64,6 +66,9 @@ namespace InteractionSystem.Player
                     // etkileşim türü
                     m_CurrentInteractionType = interactable.InteractionType;
 
+                    //Etkileşim türüne göre prompt gösterilir
+                    m_InteractionUI.ShowPrompt(GetPromptText(m_CurrentInteractionType));
+
                     return;
                 }
             }
@@ -78,6 +83,12 @@ namespace InteractionSystem.Player
         private void HandleInput()
         {
             if (m_CurrentInteractable == null) return;
+
+            if (!m_CurrentInteractable.CanInteract)
+            {
+                m_InteractionUI.ShowFeedback(m_CurrentInteractable.CannotInteractReason);
+                return;
+            }
 
             switch (m_CurrentInteractionType)
             {
@@ -144,6 +155,18 @@ namespace InteractionSystem.Player
         {
             m_CurrentInteractable = null;
             m_HoldTimer = 0f;
+            m_InteractionUI.ClearUI();
+        }
+
+        private string GetPromptText(InteractionType type)
+        {
+            return type switch
+            {
+                InteractionType.Instant => "Press E",
+                InteractionType.Toggle  => "Press E to Toggle",
+                InteractionType.Hold    => "Hold E",
+                _ => string.Empty
+            };
         }
 
         #endregion

@@ -34,6 +34,8 @@ public class Switch : MonoBehaviour, IInteractable
     #endregion
 
     #region IInteractable Implementation
+    bool IInteractable.CanInteract => true;
+    string IInteractable.CannotInteractReason => string.Empty;
     InteractionType IInteractable.InteractionType => m_InteractionType;
     float IInteractable.HoldDuration => 0f;
 
@@ -53,5 +55,5 @@ public class Switch : MonoBehaviour, IInteractable
         m_OnSwitchToggled?.Invoke();
     }
     #endregion
-    
+
 } 
