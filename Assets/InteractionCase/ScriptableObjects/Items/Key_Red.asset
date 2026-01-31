@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba15f0af74b7f8643b44d7384b908e55, type: 3}
   m_Name: Key_Red
   m_EditorClassIdentifier: 
-  itemId: Key_Red
-  displayName: Red Key
+  m_ItemId: Key_Red
+  m_DisplayName: Red Key
