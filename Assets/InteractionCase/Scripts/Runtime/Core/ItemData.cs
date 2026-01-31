@@ -7,9 +7,9 @@ public class ItemData : ScriptableObject
     [SerializeField] private string m_ItemId;
     [SerializeField] private string m_DisplayName;
 
-    /// <summary> Item unique id (e.g. "Key_Red") </summary>
+    /// <summary> Item id </summary>
     public string ItemId => m_ItemId;
 
-    /// <summary> UI display name </summary>
+    /// <summary> UI ismi </summary>
     public string DisplayName => m_DisplayName;
 }

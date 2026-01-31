@@ -80,7 +80,7 @@ namespace InteractionSystem.UI
         }
 
         /// <summary>
-        /// Shows key icon based on collected key id.
+        /// key ikonu id ye göre gösterilir.
         /// </summary>
         public void ShowKeyIcon(ItemData key)
         {
