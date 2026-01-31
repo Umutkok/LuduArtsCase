@@ -20,9 +20,6 @@ namespace InteractionSystem.Player
         [SerializeField] private LayerMask m_InteractableLayer;
         [SerializeField] private float m_InteractionRange = 3f;
 
-        [Header("Hold")]
-        [SerializeField] private float m_HoldDuration = 2f;
-
         #endregion
 
         #region Private Fields
@@ -106,28 +103,35 @@ namespace InteractionSystem.Player
 
         private void HandleHoldInteraction()
         {
+            if (m_CurrentInteractable == null)
+                return;
+
+            float duration = m_CurrentInteractable.HoldDuration;
+
+            // Güvenlik: hold istemeyen objeler
+            if (duration <= 0f)
+                return;
+
             if (Input.GetKey(KeyCode.E))
             {
                 m_HoldTimer += Time.deltaTime;
-                float holdProgress = Mathf.Clamp01(m_HoldTimer / Mathf.Max(0.0001f, m_HoldDuration));
+
+                float holdProgress = Mathf.Clamp01(
+                    m_HoldTimer / duration
+                );
 
                 m_CurrentInteractable.InteractHold(holdProgress);
 
                 if (holdProgress >= 1f)
                 {
-                    // Completed hold -> reset timer or keep depending on design
+                    // Hold tamamlandı
                     m_HoldTimer = 0f;
                 }
             }
             else
             {
-                // Released before complete
-                if (m_HoldTimer > 0f)
-                {
-                    // Optionally notify with 0 or partial progress
-                    m_CurrentInteractable.InteractHold(0f);
-                }
-
+                // Erken bırakıldıysa
+                m_CurrentInteractable.InteractHold(0f);
                 m_HoldTimer = 0f;
             }
         }

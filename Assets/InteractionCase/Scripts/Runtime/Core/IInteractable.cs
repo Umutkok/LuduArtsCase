@@ -13,6 +13,8 @@ namespace InteractionSystem.Core
         /// tek tıklama ile aktifleşir
         /// </summary>
         InteractionType InteractionType { get; }
+
+        float HoldDuration { get; }
         void InteractInstant();
 
         /// <summary>
