@@ -132,6 +132,7 @@ namespace InteractionSystem.Player
                 );
 
                 m_CurrentInteractable.InteractHold(holdProgress);
+                m_InteractionUI.UpdateHoldProgress(holdProgress);
 
                 if (holdProgress >= 1f)
                 {
@@ -143,6 +144,7 @@ namespace InteractionSystem.Player
             {
                 // Erken bırakıldıysa
                 m_CurrentInteractable.InteractHold(0f);
+                m_InteractionUI.UpdateHoldProgress(0f);
                 m_HoldTimer = 0f;
             }
         }

@@ -26,7 +26,7 @@ namespace InteractionSystem.UI
         private void Awake()
         {
             ClearUI();
-            
+
             m_Inventory = FindAnyObjectByType<PlayerInventory>();
 
             if (m_Inventory != null)
@@ -56,6 +56,7 @@ namespace InteractionSystem.UI
 
             m_HoldProgressBar.fillAmount = progress;
             m_HoldProgressBar.gameObject.SetActive(progress > 0f);
+            Debug.Log("sadsa0");
         }
 
         public void ShowFeedback(string message)
