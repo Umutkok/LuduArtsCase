@@ -258,8 +258,8 @@ Assets/
 |-------|-------|
 | Ad Soyad | [Umut KÖK] |
 | E-posta | [umutkok88@gmail.com] |
-| LinkedIn | [profil linki] |
-| GitHub | [github.com/username] |
+| LinkedIn | [(https://www.linkedin.com/in/umutkok/) |
+| GitHub |(https://github.com/Umutkok/) |
 
 ---
 
