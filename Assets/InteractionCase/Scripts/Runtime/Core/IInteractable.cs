@@ -5,12 +5,14 @@ namespace InteractionSystem.Core
     /// <summary>
     /// Player tarafından etkileşime girilebilir objeler
     /// </summary>
+
     public interface IInteractable
     {
         /// <summary>
         /// anında çağırılan interaction
         /// tek tıklama ile aktifleşir
         /// </summary>
+        InteractionType InteractionType { get; }
         void InteractInstant();
 
         /// <summary>

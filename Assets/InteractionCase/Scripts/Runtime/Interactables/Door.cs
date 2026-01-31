@@ -3,16 +3,23 @@ using InteractionSystem.Core;
 
 public class Door : MonoBehaviour, IInteractable
 {
+    #region Fields
+
     [Header("Door Settings")]
     [SerializeField] private Transform pivotPoint;
     [SerializeField] private float openAngle = 90f;
 
-    private bool isOpen;
+    private readonly InteractionType m_InteractionType = InteractionType.Toggle;
+
+    private bool isOpen = false;
+
+    #endregion
+
+    #region IInteractable Implementation
+    InteractionType IInteractable.InteractionType => m_InteractionType;
 
     public void InteractInstant()
     {
-        ToggleDoor();
-        Debug.Log("InteractInstant");
     }
 
     public void InteractHold(float holdProgress)
@@ -22,9 +29,11 @@ public class Door : MonoBehaviour, IInteractable
 
     public void InteractToggle()
     {
-        // Şimdilik kullanılmıyor
+        ToggleDoor();
     }
+    #endregion
 
+    #region Private Methods
     private void ToggleDoor()
     {
         if (pivotPoint == null)
@@ -38,5 +47,7 @@ public class Door : MonoBehaviour, IInteractable
         pivotPoint.localRotation = Quaternion.Euler(0f, targetAngle, 0f);
 
         isOpen = !isOpen;
+        Debug.Log(isOpen);
     }
+    #endregion
 } 
